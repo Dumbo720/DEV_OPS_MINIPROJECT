@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                echo 'Checkout completed'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Build completed'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'echo "This is a Test" > test-result.txt'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                mkdir -p /usr/local/opt/nginx/html
+                cp test-result.txt /usr/local/opt/nginx/html/
+                '''
+            }
+        }
+    }
+}

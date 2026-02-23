@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # sv
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
@@ -40,3 +41,8 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+=======
+"# DEV_OPS_MINIPROJECT" 
+## Jenkins Webhook Test
+This line was added to trigger an automated Jenkins build.
+>>>>>>> f0ddd62ea5a3c8efa2fa6aca1b188a12511545f7
