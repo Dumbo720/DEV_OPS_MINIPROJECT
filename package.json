@@ -1,0 +1,25 @@
+{
+  "name": "ai-powered-resume-screening-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-powered resume screening system using AWS serverless architecture",
+  "type": "module",
+  "scripts": {
+    "sam:build": "sam build",
+    "sam:deploy": "sam deploy --guided",
+    "lint": "node --check src/functions/generateUploadUrl.js && node --check src/functions/processResume.js && node --check src/functions/extractAndAnalyzeText.js && node --check src/functions/getCandidates.js && node --check src/functions/deleteCandidate.js",
+    "test:sample": "node scripts/run-sample-tests.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-comprehend": "^3.844.0",
+    "@aws-sdk/client-dynamodb": "^3.844.0",
+    "@aws-sdk/client-lambda": "^3.844.0",
+    "@aws-sdk/client-s3": "^3.844.0",
+    "@aws-sdk/client-textract": "^3.844.0",
+    "@aws-sdk/lib-dynamodb": "^3.844.0",
+    "@aws-sdk/s3-request-presigner": "^3.844.0",
+    "mammoth": "^1.8.0",
+    "pdf-parse": "^1.1.1",
+    "uuid": "^11.1.0"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "c32f26b6-b6d0-4a88-a35c-962c3c7f81c5",
+  "name": "Rahul Sharma",
+  "skills": [
+    "aws",
+    "lambda",
+    "node.js",
+    "javascript",
+    "dynamodb",
+    "rest api"
+  ],
+  "experience": "5 years",
+  "score": 83,
+  "resumeUrl": "s3://resume-screening-bucket/resumes/c32f26b6-b6d0-4a88-a35c-962c3c7f81c5/1712216000000-Rahul-Sharma.pdf",
+  "uploadTime": "2026-04-04T12:20:00.000Z",
+  "textPreview": "Rahul Sharma\nSenior Software Engineer\nExperience: 5 years\nSkills: AWS, Lambda, Node.js, JavaScript, DynamoDB, REST API",
+  "requiredSkills": [
+    "aws",
+    "node.js",
+    "javascript",
+    "lambda",
+    "dynamodb",
+    "api gateway"
+  ],
+  "sourceFileName": "Rahul-Sharma.pdf"
+}

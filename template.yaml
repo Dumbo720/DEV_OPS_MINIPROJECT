@@ -1,0 +1,200 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AI-Powered Resume Screening System using AWS Serverless Architecture
+
+Globals:
+  Function:
+    Runtime: nodejs20.x
+    Timeout: 60
+    MemorySize: 256
+    Architectures:
+      - x86_64
+    Environment:
+      Variables:
+        CANDIDATES_TABLE: !Ref CandidatesTable
+        RESUME_BUCKET: !Ref ResumeBucket
+        ALLOWED_ORIGIN: !Ref AllowedOrigin
+        REQUIRED_SKILLS_DEFAULT: !Ref DefaultRequiredSkills
+  Api:
+    Cors:
+      AllowMethods: "'OPTIONS,GET,POST,DELETE'"
+      AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-amz-meta-candidate-id,x-amz-meta-required-skills,x-amz-meta-original-name'"
+      AllowOrigin: !Sub "'${AllowedOrigin}'"
+
+Parameters:
+  AllowedOrigin:
+    Type: String
+    Default: "*"
+  DefaultRequiredSkills:
+    Type: String
+    Default: "AWS,Node.js,JavaScript,REST API,DynamoDB,Lambda"
+  EnableComprehend:
+    Type: String
+    AllowedValues:
+      - "true"
+      - "false"
+    Default: "true"
+
+Resources:
+  ResumeApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: ResumeScreeningApi
+      StageName: prod
+
+  ResumeBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - "*"
+            AllowedMethods:
+              - PUT
+              - GET
+              - HEAD
+            AllowedOrigins:
+              - !Ref AllowedOrigin
+            MaxAge: 3000
+      NotificationConfiguration:
+        EventBridgeConfiguration:
+          EventBridgeEnabled: true
+
+  CandidatesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
+  GenerateUploadUrlFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: generateUploadUrl
+      Handler: src/functions/generateUploadUrl.handler
+      CodeUri: .
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref ResumeBucket
+      Events:
+        GenerateUploadUrlApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ResumeApi
+            Path: /uploads/presign
+            Method: post
+
+  ProcessResumeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: processResume
+      Handler: src/functions/processResume.handler
+      CodeUri: .
+      Environment:
+        Variables:
+          ANALYSIS_FUNCTION_NAME: !Ref ExtractAndAnalyzeTextFunction
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Ref ResumeBucket
+        - LambdaInvokePolicy:
+            FunctionName: !Ref ExtractAndAnalyzeTextFunction
+      Events:
+        ResumeUploadedRule:
+          Type: EventBridgeRule
+          Properties:
+            Pattern:
+              source:
+                - aws.s3
+              detail-type:
+                - Object Created
+              detail:
+                bucket:
+                  name:
+                    - !Ref ResumeBucket
+                object:
+                  key:
+                    - prefix: resumes/
+
+  ExtractAndAnalyzeTextFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: extractAndAnalyzeText
+      Handler: src/functions/extractAndAnalyzeText.handler
+      CodeUri: .
+      Timeout: 180
+      MemorySize: 512
+      Environment:
+        Variables:
+          ENABLE_COMPREHEND: !Ref EnableComprehend
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Ref ResumeBucket
+        - DynamoDBCrudPolicy:
+            TableName: !Ref CandidatesTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - textract:DetectDocumentText
+                - textract:StartDocumentTextDetection
+                - textract:GetDocumentTextDetection
+              Resource: "*"
+            - Effect: Allow
+              Action:
+                - comprehend:DetectEntities
+                - comprehend:DetectKeyPhrases
+              Resource: "*"
+
+  GetCandidatesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getCandidates
+      Handler: src/functions/getCandidates.handler
+      CodeUri: .
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref CandidatesTable
+      Events:
+        GetCandidatesApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ResumeApi
+            Path: /candidates
+            Method: get
+
+  DeleteCandidateFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: deleteCandidate
+      Handler: src/functions/deleteCandidate.handler
+      CodeUri: .
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref CandidatesTable
+        - S3CrudPolicy:
+            BucketName: !Ref ResumeBucket
+      Events:
+        DeleteCandidateApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ResumeApi
+            Path: /candidates/{id}
+            Method: delete
+
+Outputs:
+  ApiBaseUrl:
+    Description: API Gateway base URL
+    Value: !Sub "https://${ResumeApi}.execute-api.${AWS::Region}.amazonaws.com/prod"
+  ResumeBucketName:
+    Description: Resume storage bucket
+    Value: !Ref ResumeBucket
+  CandidatesTableName:
+    Description: DynamoDB table for structured candidates
+    Value: !Ref CandidatesTable

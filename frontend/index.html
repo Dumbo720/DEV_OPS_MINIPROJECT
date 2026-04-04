@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ResumeAI Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">R</div>
+          <div>
+            <p class="brand-label">ResumeAI</p>
+            <p class="brand-subtitle">Screening Suite</p>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <button class="nav-link active" data-section="dashboard">
+            <span class="nav-icon">DB</span>
+            <span>Dashboard</span>
+          </button>
+          <button class="nav-link" data-section="upload">
+            <span class="nav-icon">UP</span>
+            <span>Upload Resume</span>
+          </button>
+          <button class="nav-link" data-section="candidates">
+            <span class="nav-icon">CA</span>
+            <span>Candidates</span>
+          </button>
+          <button class="nav-link" data-section="ranking">
+            <span class="nav-icon">RK</span>
+            <span>Ranking</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-card">
+          <p class="sidebar-card-label">Live Pipeline</p>
+          <strong>AWS Serverless</strong>
+          <p>API Gateway, Lambda, S3, Textract, DynamoDB</p>
+        </div>
+      </aside>
+
+      <div class="content-shell">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">AI Resume Screening System</p>
+            <h1>Recruitment Intelligence Dashboard</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <label class="api-input">
+              <span>API Base URL</span>
+              <input id="apiBaseUrl" type="text" placeholder="https://abc123.execute-api.ap-south-1.amazonaws.com/prod" />
+            </label>
+            <button id="refreshBtn" class="ghost-button">Refresh Data</button>
+            <div class="profile-chip">
+              <div class="profile-avatar">HR</div>
+            </div>
+          </div>
+        </header>
+
+        <main class="main-content">
+          <section class="hero-banner">
+            <div>
+              <p class="eyebrow">AI-Powered Resume Screening System</p>
+              <h2>Upload resumes, analyze candidates, and review ranked results in one dashboard.</h2>
+              <p class="hero-copy">
+                Use the existing AWS-powered workflow to manage resume uploads, candidate insights, and leaderboard-style screening results.
+              </p>
+            </div>
+            <div class="hero-stats">
+              <article class="stat-card">
+                <span>Total Candidates</span>
+                <strong id="statCandidates">0</strong>
+              </article>
+              <article class="stat-card">
+                <span>Top Score</span>
+                <strong id="statTopScore">0%</strong>
+              </article>
+              <article class="stat-card">
+                <span>Average Score</span>
+                <strong id="statAverageScore">0%</strong>
+              </article>
+            </div>
+          </section>
+
+          <section class="section-panel" id="section-upload" data-view="upload">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Screen 1</p>
+                <h3>Upload Resume</h3>
+                <p>Drag and drop a resume, preview the file, and send it through the AWS analysis pipeline.</p>
+              </div>
+            </div>
+
+            <div class="upload-layout">
+              <div class="upload-dropzone" id="dropzone">
+                <input id="resumeFile" type="file" accept=".pdf,.docx,.png,.jpg,.jpeg" hidden />
+                <div class="dropzone-icon">UP</div>
+                <h4>Drag & drop your resume here</h4>
+                <p>PDF, DOCX, PNG, JPG, or JPEG up to your S3 upload limits.</p>
+                <button id="selectFileBtn" class="primary-button" type="button">Choose File</button>
+              </div>
+
+              <div class="upload-sidebar">
+                <div class="settings-card">
+                  <label>
+                    Target Role
+                    <select id="roleSelect"></select>
+                  </label>
+                  <p id="roleDescription" class="hint-text"></p>
+                </div>
+
+                <div class="preview-card">
+                  <div class="card-header">
+                    <h4>File Preview</h4>
+                    <span id="fileTypeBadge" class="badge muted">No file</span>
+                  </div>
+                  <div id="filePreview" class="file-preview empty">
+                    <p>No file selected yet.</p>
+                  </div>
+                </div>
+
+                <div class="progress-card">
+                  <div class="card-header">
+                    <h4>Upload Progress</h4>
+                    <span id="progressValue">0%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div id="progressBar" class="progress-fill"></div>
+                  </div>
+                  <p id="uploadStatus" class="status-text">Ready to upload a resume.</p>
+                </div>
+
+                <button id="uploadBtn" class="primary-button full-width">Upload and Analyze</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-grid">
+            <article class="section-panel" id="section-candidates" data-view="candidates">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow">Screen 2</p>
+                  <h3>Candidates Dashboard</h3>
+                </div>
+                <div class="controls">
+                  <input id="searchInput" type="text" placeholder="Search by name, skill, experience" />
+                  <select id="skillFilter">
+                    <option value="">All Skills</option>
+                  </select>
+                  <select id="sortBy">
+                    <option value="score-desc">Sort by Score</option>
+                    <option value="score-asc">Lowest Score</option>
+                    <option value="name-asc">Name A-Z</option>
+                    <option value="recent-desc">Most Recent</option>
+                  </select>
+                </div>
+              </div>
+
+              <div id="candidateList" class="candidate-grid"></div>
+            </article>
+
+            <article class="section-panel" id="section-ranking" data-view="ranking">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow">Screen 3</p>
+                  <h3>Ranking View</h3>
+                </div>
+              </div>
+              <div id="rankingList" class="ranking-list"></div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <template id="candidateSkeletonTemplate">
+      <article class="candidate-card skeleton-card">
+        <div class="skeleton skeleton-line wide"></div>
+        <div class="skeleton skeleton-line medium"></div>
+        <div class="skeleton pill-skeleton-row">
+          <span class="skeleton-pill"></span>
+          <span class="skeleton-pill"></span>
+          <span class="skeleton-pill"></span>
+        </div>
+        <div class="skeleton skeleton-line short"></div>
+      </article>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

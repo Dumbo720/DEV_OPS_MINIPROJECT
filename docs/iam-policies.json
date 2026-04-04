@@ -1,0 +1,122 @@
+{
+  "lambdaExecutionRolePolicy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource": "*"
+      }
+    ]
+  },
+  "generateUploadUrlPolicy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:AbortMultipartUpload"
+        ],
+        "Resource": "arn:aws:s3:::YOUR_RESUME_BUCKET/*"
+      }
+    ]
+  },
+  "processResumePolicy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:HeadObject"
+        ],
+        "Resource": "arn:aws:s3:::YOUR_RESUME_BUCKET/*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "lambda:InvokeFunction"
+        ],
+        "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:extractAndAnalyzeText"
+      }
+    ]
+  },
+  "extractAndAnalyzeTextPolicy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject"
+        ],
+        "Resource": "arn:aws:s3:::YOUR_RESUME_BUCKET/*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "textract:DetectDocumentText",
+          "textract:StartDocumentTextDetection",
+          "textract:GetDocumentTextDetection"
+        ],
+        "Resource": "*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "comprehend:DetectEntities",
+          "comprehend:DetectKeyPhrases"
+        ],
+        "Resource": "*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "dynamodb:PutItem",
+          "dynamodb:UpdateItem",
+          "dynamodb:GetItem"
+        ],
+        "Resource": "arn:aws:dynamodb:REGION:ACCOUNT_ID:table/Candidates"
+      }
+    ]
+  },
+  "getCandidatesPolicy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:GetItem"
+        ],
+        "Resource": "arn:aws:dynamodb:REGION:ACCOUNT_ID:table/Candidates"
+      }
+    ]
+  },
+  "deleteCandidatePolicy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "dynamodb:GetItem",
+          "dynamodb:DeleteItem"
+        ],
+        "Resource": "arn:aws:dynamodb:REGION:ACCOUNT_ID:table/Candidates"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:DeleteObject"
+        ],
+        "Resource": "arn:aws:s3:::YOUR_RESUME_BUCKET/*"
+      }
+    ]
+  }
+}
