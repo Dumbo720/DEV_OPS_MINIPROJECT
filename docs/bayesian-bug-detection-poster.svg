@@ -1,0 +1,162 @@
+<svg width="1080" height="1536" viewBox="0 0 1080 1536" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="120" y1="64" x2="960" y2="1472" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5F9FF"/>
+      <stop offset="1" stop-color="#ECF3FF"/>
+    </linearGradient>
+    <linearGradient id="heroGradient" x1="96" y1="112" x2="984" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F4C81"/>
+      <stop offset="1" stop-color="#18A0A8"/>
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="706" y1="191" x2="912" y2="442" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8EE3F5"/>
+      <stop offset="1" stop-color="#D7FFFB"/>
+    </linearGradient>
+    <filter id="cardShadow" x="0" y="0" width="1080" height="1536" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="18"/>
+      <feGaussianBlur stdDeviation="22"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0588235 0 0 0 0 0.14902 0 0 0 0 0.27451 0 0 0 0.12 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+    <style>
+      .title { font: 700 60px 'Space Grotesk', 'Segoe UI', sans-serif; fill: #FFFFFF; letter-spacing: -1.6px; }
+      .subtitle { font: 500 24px 'DM Sans', 'Segoe UI', sans-serif; fill: rgba(255,255,255,0.84); }
+      .eyebrow { font: 700 18px 'DM Sans', 'Segoe UI', sans-serif; fill: #7FD8E8; letter-spacing: 3px; text-transform: uppercase; }
+      .section-title { font: 700 26px 'Space Grotesk', 'Segoe UI', sans-serif; fill: #10233C; letter-spacing: -0.3px; }
+      .metric-title { font: 700 18px 'DM Sans', 'Segoe UI', sans-serif; fill: #4C6178; letter-spacing: 1.6px; text-transform: uppercase; }
+      .body { font: 500 18px 'DM Sans', 'Segoe UI', sans-serif; fill: #425466; }
+      .body-strong { font: 700 18px 'DM Sans', 'Segoe UI', sans-serif; fill: #10233C; }
+      .small { font: 500 16px 'DM Sans', 'Segoe UI', sans-serif; fill: #5C6F84; }
+      .pill { font: 700 17px 'DM Sans', 'Segoe UI', sans-serif; fill: #0F4C81; }
+      .value { font: 700 34px 'Space Grotesk', 'Segoe UI', sans-serif; fill: #10233C; letter-spacing: -0.8px; }
+      .node { font: 700 18px 'DM Sans', 'Segoe UI', sans-serif; fill: #10233C; }
+      .footer { font: 600 18px 'DM Sans', 'Segoe UI', sans-serif; fill: #F6FBFF; }
+    </style>
+  </defs>
+
+  <rect width="1080" height="1536" fill="url(#bgGradient)"/>
+  <circle cx="930" cy="182" r="220" fill="#D7F8FF" fill-opacity="0.7"/>
+  <circle cx="158" cy="1388" r="224" fill="#DDEBFF" fill-opacity="0.72"/>
+  <circle cx="880" cy="1278" r="170" fill="#D7FFF7" fill-opacity="0.5"/>
+
+  <g filter="url(#cardShadow)">
+    <rect x="64" y="64" width="952" height="404" rx="40" fill="url(#heroGradient)"/>
+  </g>
+
+  <rect x="96" y="96" width="888" height="340" rx="32" stroke="rgba(255,255,255,0.22)"/>
+
+  <text x="112" y="146" class="eyebrow">Intelligent Debugging Poster</text>
+  <text x="112" y="222" class="title">Bayesian Model for</text>
+  <text x="112" y="292" class="title">Automated Bug Detection</text>
+  <text x="112" y="346" class="subtitle">A web-based system that predicts software bugs using Bayesian</text>
+  <text x="112" y="380" class="subtitle">probabilistic reasoning and returns confidence-based outcomes.</text>
+
+  <g>
+    <rect x="738" y="130" width="214" height="232" rx="28" fill="rgba(255,255,255,0.12)"/>
+    <rect x="764" y="156" width="162" height="180" rx="24" fill="url(#accentGradient)"/>
+    <path d="M799 270C799 232.997 828.997 203 866 203C903.003 203 933 232.997 933 270C933 307.003 903.003 337 866 337C828.997 337 799 307.003 799 270Z" fill="#0F4C81" fill-opacity="0.12"/>
+    <path d="M836 238H896C904.837 238 912 245.163 912 254V286C912 294.837 904.837 302 896 302H880L866 318V302H836C827.163 302 820 294.837 820 286V254C820 245.163 827.163 238 836 238Z" fill="#0F4C81"/>
+    <circle cx="846" cy="270" r="8" fill="#D7FFFB"/>
+    <circle cx="866" cy="270" r="8" fill="#D7FFFB"/>
+    <circle cx="886" cy="270" r="8" fill="#D7FFFB"/>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="64" y="500" width="430" height="360" rx="32" fill="#FFFFFF"/>
+  </g>
+  <text x="96" y="556" class="section-title">Problem and Objectives</text>
+  <rect x="96" y="582" width="92" height="36" rx="18" fill="#E8F6FB"/>
+  <text x="116" y="606" class="pill">Challenge</text>
+  <text x="96" y="654" class="body">Manual debugging is time-consuming and complex.</text>
+  <text x="96" y="688" class="body">Traditional tools rarely expose confidence levels.</text>
+  <text x="96" y="722" class="body">Teams struggle to judge how reliable an alert is.</text>
+
+  <rect x="96" y="756" width="100" height="36" rx="18" fill="#E9F8F1"/>
+  <text x="117" y="780" class="pill">Goals</text>
+  <text x="96" y="828" class="body">Automate bug detection from source code input.</text>
+  <text x="96" y="862" class="body">Apply Bayesian inference to uncertain signals.</text>
+  <text x="96" y="896" class="body">Return probability-based insights for faster decisions.</text>
+
+  <g filter="url(#cardShadow)">
+    <rect x="526" y="500" width="490" height="360" rx="32" fill="#FFFFFF"/>
+  </g>
+  <text x="558" y="556" class="section-title">Tech Stack</text>
+  <rect x="558" y="588" width="426" height="1" fill="#E6EEF5"/>
+  <text x="558" y="632" class="metric-title">Frontend</text>
+  <text x="740" y="632" class="body-strong">React.js</text>
+  <text x="558" y="686" class="metric-title">Backend</text>
+  <text x="740" y="686" class="body-strong">Node.js, Express</text>
+  <text x="558" y="740" class="metric-title">ML Server</text>
+  <text x="740" y="740" class="body-strong">Flask (Python)</text>
+  <text x="558" y="794" class="metric-title">Model</text>
+  <text x="740" y="794" class="body-strong">Bayesian Model (.pkl, Scikit-learn)</text>
+  <text x="558" y="848" class="metric-title">Database</text>
+  <text x="740" y="848" class="body-strong">MongoDB</text>
+
+  <g filter="url(#cardShadow)">
+    <rect x="64" y="892" width="952" height="242" rx="32" fill="#FFFFFF"/>
+  </g>
+  <text x="96" y="948" class="section-title">System Architecture</text>
+  <text x="96" y="982" class="body">User → React → Node.js → Flask → Bayesian Model → Output</text>
+
+  <g>
+    <rect x="96" y="1022" width="122" height="56" rx="18" fill="#EAF4FF"/>
+    <rect x="246" y="1022" width="122" height="56" rx="18" fill="#EAF9F9"/>
+    <rect x="396" y="1022" width="122" height="56" rx="18" fill="#EDF7EA"/>
+    <rect x="546" y="1022" width="150" height="56" rx="18" fill="#FFF3E6"/>
+    <rect x="724" y="1022" width="160" height="56" rx="18" fill="#EDEBFF"/>
+    <rect x="912" y="1022" width="72" height="56" rx="18" fill="#E9F8F1"/>
+    <text x="130" y="1057" class="node">User</text>
+    <text x="281" y="1057" class="node">React</text>
+    <text x="425" y="1057" class="node">Node.js</text>
+    <text x="601" y="1057" class="node">Flask</text>
+    <text x="754" y="1057" class="node">Bayesian</text>
+    <text x="928" y="1057" class="node">Out</text>
+    <path d="M222 1050H242" stroke="#9AB7CC" stroke-width="4" stroke-linecap="round"/>
+    <path d="M372 1050H392" stroke="#9AB7CC" stroke-width="4" stroke-linecap="round"/>
+    <path d="M522 1050H542" stroke="#9AB7CC" stroke-width="4" stroke-linecap="round"/>
+    <path d="M700 1050H720" stroke="#9AB7CC" stroke-width="4" stroke-linecap="round"/>
+    <path d="M888 1050H908" stroke="#9AB7CC" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="64" y="1166" width="458" height="306" rx="32" fill="#FFFFFF"/>
+  </g>
+  <text x="96" y="1222" class="section-title">Workflow</text>
+  <text x="96" y="1278" class="body">1. User submits source code.</text>
+  <text x="96" y="1314" class="body">2. Backend forwards the request to Flask.</text>
+  <text x="96" y="1350" class="body">3. Model extracts signals and analyzes features.</text>
+  <text x="96" y="1386" class="body">4. Bug prediction and probability are produced.</text>
+  <text x="96" y="1422" class="body">5. Results are shown on the UI.</text>
+
+  <g filter="url(#cardShadow)">
+    <rect x="554" y="1166" width="462" height="146" rx="32" fill="#FFFFFF"/>
+  </g>
+  <text x="586" y="1222" class="section-title">Output Format</text>
+  <text x="586" y="1262" class="body"><tspan class="body-strong">Bug:</tspan> True / False</text>
+  <text x="586" y="1292" class="body"><tspan class="body-strong">H:</tspan> Bug Type</text>
+  <text x="762" y="1262" class="body"><tspan class="body-strong">P(H|D):</tspan> Bug Probability</text>
+  <text x="762" y="1292" class="body"><tspan class="body-strong">S:</tspan> Signals / Features</text>
+
+  <g filter="url(#cardShadow)">
+    <rect x="554" y="1334" width="220" height="138" rx="28" fill="#FFFFFF"/>
+    <rect x="796" y="1334" width="220" height="138" rx="28" fill="#FFFFFF"/>
+  </g>
+  <text x="586" y="1380" class="section-title">Advantages</text>
+  <text x="586" y="1414" class="small">Faster debugging</text>
+  <text x="586" y="1438" class="small">Confidence-based results</text>
+  <text x="586" y="1462" class="small">Scalable architecture</text>
+
+  <text x="828" y="1380" class="section-title">Limitations</text>
+  <text x="828" y="1414" class="small">Depends on training quality</text>
+  <text x="828" y="1438" class="small">Known-pattern bias</text>
+  <text x="828" y="1462" class="small">Needs ML server integration</text>
+
+  <g>
+    <rect x="64" y="1488" width="952" height="24" rx="12" fill="#10385D"/>
+    <text x="91" y="1506" class="footer">Future scope: multi-language support, IDE integration, improved accuracy, and real-time debugging.</text>
+  </g>
+</svg>
