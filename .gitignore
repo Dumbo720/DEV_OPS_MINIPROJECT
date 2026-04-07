@@ -4,5 +4,6 @@ samconfig.toml
 .env
 .env.*
 *.log
+test-results/
 Thumbs.db
 .DS_Store
