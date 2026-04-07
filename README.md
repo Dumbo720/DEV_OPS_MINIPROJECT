@@ -277,3 +277,5 @@ npm run test:sample
 - Replace full table scans with access-pattern-specific GSIs
 - Add per-job scoring and job description storage
 - Add CloudFront and AWS WAF
+Jenkins pipeline validation test.
+
