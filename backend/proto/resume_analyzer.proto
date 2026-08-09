@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package resumeanalyzer;
+
+service ResumeAnalyzerService {
+  rpc AnalyzeCandidate(CandidateRequest) returns (CandidateResponse);
+  rpc GetRoleRequirements(RoleRequest) returns (RoleResponse);
+}
+
+message CandidateRequest {
+  string candidate_name = 1;
+  string email = 2;
+  string target_role = 3;
+  repeated string skills = 4;
+  int32 experience_years = 5;
+}
+
+message CandidateResponse {
+  string candidate_name = 1;
+  string email = 2;
+  string target_role = 3;
+  double score = 4;
+  repeated string matched_skills = 5;
+  repeated string missing_skills = 6;
+  string recommendation = 7;
+}
+
+message RoleRequest {
+  string role_name = 1;
+}
+
+message RoleResponse {
+  string role_name = 1;
+  repeated string required_skills = 2;
+}
