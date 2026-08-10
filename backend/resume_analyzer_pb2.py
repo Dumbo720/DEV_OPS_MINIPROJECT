@@ -24,21 +24,21 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15resume_analyzer.proto\x12\x0eresumeanalyzer\"x\n\x10\x43\x61ndidateRequest\x12\x16\n\x0e\x63\x61ndidate_name\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x13\n\x0btarget_role\x18\x03 \x01(\t\x12\x0e\n\x06skills\x18\x04 \x03(\t\x12\x18\n\x10\x65xperience_years\x18\x05 \x01(\x05\"\xa6\x01\n\x11\x43\x61ndidateResponse\x12\x16\n\x0e\x63\x61ndidate_name\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x13\n\x0btarget_role\x18\x03 \x01(\t\x12\r\n\x05score\x18\x04 \x01(\x01\x12\x16\n\x0ematched_skills\x18\x05 \x03(\t\x12\x16\n\x0emissing_skills\x18\x06 \x03(\t\x12\x16\n\x0erecommendation\x18\x07 \x01(\t\" \n\x0bRoleRequest\x12\x11\n\trole_name\x18\x01 \x01(\t\":\n\x0cRoleResponse\x12\x11\n\trole_name\x18\x01 \x01(\t\x12\x17\n\x0frequired_skills\x18\x02 \x03(\t2\xc2\x01\n\x15ResumeAnalyzerService\x12W\n\x10\x41nalyzeCandidate\x12 .resumeanalyzer.CandidateRequest\x1a!.resumeanalyzer.CandidateResponse\x12P\n\x13GetRoleRequirements\x12\x1b.resumeanalyzer.RoleRequest\x1a\x1c.resumeanalyzer.RoleResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15resume_analyzer.proto\x12\x0eresumeanalyzer\"\x8e\x01\n\x10\x43\x61ndidateRequest\x12\x16\n\x0e\x63\x61ndidate_name\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x13\n\x0btarget_role\x18\x03 \x01(\t\x12\x0e\n\x06skills\x18\x04 \x03(\t\x12\x18\n\x10\x65xperience_years\x18\x05 \x01(\x05\x12\x14\n\x0clamport_time\x18\x06 \x01(\x05\"\xbc\x01\n\x11\x43\x61ndidateResponse\x12\x16\n\x0e\x63\x61ndidate_name\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x13\n\x0btarget_role\x18\x03 \x01(\t\x12\r\n\x05score\x18\x04 \x01(\x01\x12\x16\n\x0ematched_skills\x18\x05 \x03(\t\x12\x16\n\x0emissing_skills\x18\x06 \x03(\t\x12\x16\n\x0erecommendation\x18\x07 \x01(\t\x12\x14\n\x0clamport_time\x18\x08 \x01(\x05\"6\n\x0bRoleRequest\x12\x11\n\trole_name\x18\x01 \x01(\t\x12\x14\n\x0clamport_time\x18\x02 \x01(\x05\"P\n\x0cRoleResponse\x12\x11\n\trole_name\x18\x01 \x01(\t\x12\x17\n\x0frequired_skills\x18\x02 \x03(\t\x12\x14\n\x0clamport_time\x18\x03 \x01(\x05\x32\xc2\x01\n\x15ResumeAnalyzerService\x12W\n\x10\x41nalyzeCandidate\x12 .resumeanalyzer.CandidateRequest\x1a!.resumeanalyzer.CandidateResponse\x12P\n\x13GetRoleRequirements\x12\x1b.resumeanalyzer.RoleRequest\x1a\x1c.resumeanalyzer.RoleResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'resume_analyzer_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_CANDIDATEREQUEST']._serialized_start=41
-  _globals['_CANDIDATEREQUEST']._serialized_end=161
-  _globals['_CANDIDATERESPONSE']._serialized_start=164
-  _globals['_CANDIDATERESPONSE']._serialized_end=330
-  _globals['_ROLEREQUEST']._serialized_start=332
-  _globals['_ROLEREQUEST']._serialized_end=364
-  _globals['_ROLERESPONSE']._serialized_start=366
-  _globals['_ROLERESPONSE']._serialized_end=424
-  _globals['_RESUMEANALYZERSERVICE']._serialized_start=427
-  _globals['_RESUMEANALYZERSERVICE']._serialized_end=621
+  _globals['_CANDIDATEREQUEST']._serialized_start=42
+  _globals['_CANDIDATEREQUEST']._serialized_end=184
+  _globals['_CANDIDATERESPONSE']._serialized_start=187
+  _globals['_CANDIDATERESPONSE']._serialized_end=375
+  _globals['_ROLEREQUEST']._serialized_start=377
+  _globals['_ROLEREQUEST']._serialized_end=431
+  _globals['_ROLERESPONSE']._serialized_start=433
+  _globals['_ROLERESPONSE']._serialized_end=513
+  _globals['_RESUMEANALYZERSERVICE']._serialized_start=516
+  _globals['_RESUMEANALYZERSERVICE']._serialized_end=710
 # @@protoc_insertion_point(module_scope)

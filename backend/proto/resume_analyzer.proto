@@ -13,6 +13,8 @@ message CandidateRequest {
   string target_role = 3;
   repeated string skills = 4;
   int32 experience_years = 5;
+
+  int32 lamport_time = 6;
 }
 
 message CandidateResponse {
@@ -23,13 +25,19 @@ message CandidateResponse {
   repeated string matched_skills = 5;
   repeated string missing_skills = 6;
   string recommendation = 7;
+
+  int32 lamport_time = 8;
 }
 
 message RoleRequest {
   string role_name = 1;
+
+  int32 lamport_time = 2;
 }
 
 message RoleResponse {
   string role_name = 1;
   repeated string required_skills = 2;
+
+  int32 lamport_time = 3;
 }
