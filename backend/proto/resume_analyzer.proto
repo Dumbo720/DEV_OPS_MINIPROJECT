@@ -7,13 +7,16 @@ service ResumeAnalyzerService {
   rpc GetRoleRequirements(RoleRequest) returns (RoleResponse);
 }
 
+service MutexService {
+  rpc RequestAccess(AccessRequest) returns (AccessReply);
+}
+
 message CandidateRequest {
   string candidate_name = 1;
   string email = 2;
   string target_role = 3;
   repeated string skills = 4;
   int32 experience_years = 5;
-
   int32 lamport_time = 6;
 }
 
@@ -25,19 +28,26 @@ message CandidateResponse {
   repeated string matched_skills = 5;
   repeated string missing_skills = 6;
   string recommendation = 7;
-
   int32 lamport_time = 8;
 }
 
 message RoleRequest {
   string role_name = 1;
-
   int32 lamport_time = 2;
 }
 
 message RoleResponse {
   string role_name = 1;
   repeated string required_skills = 2;
-
   int32 lamport_time = 3;
+}
+
+message AccessRequest {
+  int32 node_id = 1;
+  int32 timestamp = 2;
+}
+
+message AccessReply {
+  int32 node_id = 1;
+  int32 timestamp = 2;
 }
