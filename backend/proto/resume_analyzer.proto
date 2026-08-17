@@ -11,6 +11,11 @@ service MutexService {
   rpc RequestAccess(AccessRequest) returns (AccessReply);
 }
 
+service LockService {
+  rpc AcquireLock(LockRequest) returns (LockReply);
+  rpc ReleaseLock(LockRequest) returns (LockReply);
+}
+
 message CandidateRequest {
   string candidate_name = 1;
   string email = 2;
@@ -50,4 +55,15 @@ message AccessRequest {
 message AccessReply {
   int32 node_id = 1;
   int32 timestamp = 2;
+}
+
+message LockRequest {
+  string resource_id = 1;
+  int32 holder_id = 2;
+  int32 timestamp = 3;
+}
+
+message LockReply {
+  bool granted = 1;
+  string message = 2;
 }
